@@ -75,9 +75,9 @@ impl Connection {
             Err(ConnectionError::TorNotYetSupported)?
         }
 
-        #[cfg(feature="use-tokio")]
+        #[cfg(feature="use-tor")]
         let saddr: SocketAddr = node.socket_address.try_into().unwrap();
-        #[cfg(not(feature="use-tokio"))]
+        #[cfg(not(feature="use-tor"))]
         let saddr: SocketAddr = node.socket_address.into();
 
         let socket = TcpStream::connect(saddr).await?;
